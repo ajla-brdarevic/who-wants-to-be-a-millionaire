@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch("https://opentdb.com/api.php?amount=50&type=multiple");
+        const response = await fetch("https://opentdb.com/api.php?amount=15&difficulty=easy&type=multiple");
         const data = await response.json();
 
         if (data.results && data.results.length > 0) {
@@ -41,15 +41,15 @@ function App() {
 
   const handleAnswer = (selectedAnswer) => {
     if (selectedAnswer === questions[currentQuestionIndex].correct_answer) {
-      setMoneyEarned(prices[maxQuestions - 1 - questionCount]);
+      setMoneyEarned(prices[questionCount]);
       handleNextQuestion();
     } else {
       setGameOver(true);
     }
-  };
-
+  };  
+  
   const handleNextQuestion = () => {
-    if (currentQuestionIndex + 1 < questions.length && questionCount + 1 < maxQuestions) {
+    if (currentQuestionIndex + 1 < maxQuestions && questionCount + 1 < maxQuestions) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setQuestionCount(questionCount + 1);
     } else {
@@ -57,13 +57,13 @@ function App() {
       setGameOver(true);
     }
   };
-
+  
   const handleRestartGame = () => {
+    setMoneyEarned(0);
     setQuestions(shuffleQuestions(questions));
     setCurrentQuestionIndex(0);
     setGameOver(false);
     setQuestionCount(0);
-    setMoneyEarned(0);
   };
 
   return (
