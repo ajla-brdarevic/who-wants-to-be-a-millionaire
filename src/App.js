@@ -9,7 +9,7 @@ function App() {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [isAnswerIncorrect, setIsAnswerIncorrect] = useState(false);
   const [clickedAnswer, setClickedAnswer] = useState(null);
-
+  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
 
   const maxQuestions = 15;
   const prices = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
@@ -55,6 +55,7 @@ function App() {
     } else {
       setIsAnswerCorrect(false);
       setIsAnswerIncorrect(true);
+      setCorrectAnswerIndex(questions[currentQuestionIndex].correct_answer);
 
       setTimeout(() => {
         setIsAnswerCorrect(null);
@@ -128,27 +129,23 @@ function App() {
             </>
           )}
 
-          {gameOver && (
-            <>
-              <p>{questionCount === maxQuestions - 1 ? "Congratulations! You are a millionaire!" : "Game Over!"}</p>
-              <p>You won: ${moneyEarned}</p>
-              <button onClick={handleRestartGame}>Start again!</button>
-            </>
-          )}
+          <div className="gameover">
+            {gameOver && (
+              <>
+                <p>{questionCount === maxQuestions - 1 ? "Congratulations! You are a millionaire!" : "Game Over!"}</p>
+                <p>You won: ${moneyEarned}</p>
+                <button onClick={handleRestartGame}>Start again!</button>
+              </>
+            )}
+          </div>
         </div>
         <div className="prizes">
           <table>
-            <thead>
-              <tr>
-                <th>Question</th>
-                <th>Price</th>
-              </tr>
-            </thead>
             <tbody>
               {prices.slice().reverse().map((price, index) => (
                 <tr key={index} style={{ backgroundColor: currentQuestionIndex + 1 === maxQuestions - index ? '#D6640F' : 'inherit' }}>
-                  <td>{maxQuestions - index}</td>
-                  <td>{maxQuestions - index === 1 ? `${price}€` : `${price}€`}</td>
+                  <td className="numbquestions">{maxQuestions - index}</td>
+                  <td className="pricetable">{maxQuestions - index === 1 ? `${price}€` : `${price}€`}</td>
                 </tr>
               ))}
             </tbody>

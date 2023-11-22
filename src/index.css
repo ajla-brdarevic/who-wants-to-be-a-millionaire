@@ -1,10 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat', sans-serif;
   background-image: url('./assets/background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -37,7 +33,7 @@ h1 {
 .game {
   align-self: center;
   max-width: 80%;
-  background-color: #3C30CC;
+  background-color: rgba(60, 48, 204, 0.9);
   border-radius: 10px;
 }
 
@@ -48,6 +44,27 @@ h1 {
   border-radius: 8px;
   width: 100px;
   height: 30px;
+}
+
+.gameover {
+  width: 300px;
+  align-items: center;
+  text-align: center;
+}
+
+.gameover p{
+  font-size: 30px;
+  color: white;
+}
+
+.gameover button{
+  background-color: #22A2CF;
+  color: black;
+}
+
+.question {
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .question h2{
@@ -88,7 +105,20 @@ h1 {
 }
 
 .prizes{
-  background-color: #3C30CC;
+  background-color: rgba(60, 48, 204, 0.9);;
   color: white;
   border-radius: 10px;
+}
+
+.prizes .numbquestions{
+  text-align: left;
+  padding-left: 10px;
+  padding-right: 15px;
+  padding-top: 3px;
+}
+
+.prizes .pricetable{
+  text-align: right;
+  padding-right: 10px;
+  padding-left: 15px;
 }
