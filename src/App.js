@@ -7,6 +7,9 @@ function App() {
   const [questionCount, setQuestionCount] = useState(0);
   const [moneyEarned, setMoneyEarned] = useState(0);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
+  const [isAnswerIncorrect, setIsAnswerIncorrect] = useState(false);
+  const [clickedAnswer, setClickedAnswer] = useState(null);
+
 
   const maxQuestions = 15;
   const prices = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
@@ -40,26 +43,40 @@ function App() {
     return shuffledQuestions;
   };
 
-  const handleAnswer = (selectedAnswer) => {
+  const handleAnswer = (selectedAnswer, index) => {
     if (selectedAnswer === questions[currentQuestionIndex].correct_answer) {
       setMoneyEarned(prices[questionCount]);
       setIsAnswerCorrect(true);
-  
+
       setTimeout(() => {
-        setIsAnswerCorrect(false);
+        setIsAnswerCorrect(null);
         handleNextQuestion();
-      }, 1000);
+      }, 2000);
     } else {
-      setGameOver(true);
+      setIsAnswerCorrect(false);
+      setIsAnswerIncorrect(true);
+
+      setTimeout(() => {
+        setIsAnswerCorrect(null);
+        setIsAnswerIncorrect(false);
+        setGameOver(true);
+      }, 3000);
     }
-  };  
+
+    setClickedAnswer(index);
+  };
+
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < maxQuestions && questionCount + 1 < maxQuestions) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setQuestionCount(questionCount + 1);
     } else {
-      console.log("You are a millionaire!");
+      if (questionCount === maxQuestions - 1) {
+        console.log("Congratulations! You are a millionaire!");
+      } else {
+        console.log("Game Over!");
+      }
       setGameOver(true);
     }
   };
@@ -89,8 +106,8 @@ function App() {
                   questions[currentQuestionIndex].incorrect_answers.map((answer, index) => (
                     <div key={index}>
                       <button
-                        onClick={() => handleAnswer(answer)}
-                        className={isAnswerCorrect && answer === questions[currentQuestionIndex].correct_answer ? 'correct-answer' : ''}
+                        onClick={() => handleAnswer(answer, index)}
+                        className={isAnswerCorrect ? (clickedAnswer === index ? 'correct-answer' : '') : isAnswerIncorrect ? (clickedAnswer === index ? 'incorrect-answer' : '') : ''}
                       >
                         {answer}
                       </button>
@@ -113,7 +130,7 @@ function App() {
 
           {gameOver && (
             <>
-              <p>Game Over!</p>
+              <p>{questionCount === maxQuestions - 1 ? "Congratulations! You are a millionaire!" : "Game Over!"}</p>
               <p>You won: ${moneyEarned}</p>
               <button onClick={handleRestartGame}>Start again!</button>
             </>
@@ -131,7 +148,7 @@ function App() {
               {prices.slice().reverse().map((price, index) => (
                 <tr key={index} style={{ backgroundColor: currentQuestionIndex + 1 === maxQuestions - index ? '#D6640F' : 'inherit' }}>
                   <td>{maxQuestions - index}</td>
-                  <td>{maxQuestions - index === 1 ? `${price}€` : `${price}$`}</td>
+                  <td>{maxQuestions - index === 1 ? `${price}€` : `${price}€`}</td>
                 </tr>
               ))}
             </tbody>

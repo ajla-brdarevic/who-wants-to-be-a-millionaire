@@ -83,6 +83,10 @@ h1 {
   background-color: lightgreen;
 }
 
+.answers button.incorrect-answer {
+  background-color: lightcoral;
+}
+
 .prizes{
   background-color: #3C30CC;
   color: white;
