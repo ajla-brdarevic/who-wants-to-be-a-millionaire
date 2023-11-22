@@ -79,6 +79,10 @@ h1 {
   color: black;
 }
 
+.answers button.correct-answer {
+  background-color: lightgreen;
+}
+
 .prizes{
   background-color: #3C30CC;
   color: white;
