@@ -43,6 +43,12 @@ function App() {
     return shuffledQuestions;
   };
 
+  const decodeHtmlEntities = (html) => {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  };
+
   const handleAnswer = (selectedAnswer, index) => {
     if (selectedAnswer === questions[currentQuestionIndex].correct_answer) {
       setMoneyEarned(prices[questionCount]);
@@ -66,7 +72,6 @@ function App() {
 
     setClickedAnswer(index);
   };
-
 
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < maxQuestions && questionCount + 1 < maxQuestions) {
@@ -99,7 +104,7 @@ function App() {
             <>
               <button onClick={() => setGameOver(true)}>Give up!</button>
               <div className="question">
-                <h2> {questions[currentQuestionIndex].question} </h2>
+                <h2 dangerouslySetInnerHTML={{ __html: decodeHtmlEntities(questions[currentQuestionIndex].question) }} />
               </div>
 
               <div className="answers">
@@ -120,12 +125,11 @@ function App() {
                       onClick={() => handleAnswer(questions[currentQuestionIndex].correct_answer)}
                       className={isAnswerCorrect ? 'correct-answer' : ''}
                     >
-                      {questions[currentQuestionIndex].correct_answer}
+                      {decodeHtmlEntities(questions[currentQuestionIndex].correct_answer)}
                     </button>
                   </div>
                 )}
               </div>
-
             </>
           )}
 
