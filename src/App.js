@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import AnswerPopup from "./AnswerPopup"; 
 
 function App() {
   const [questions, setQuestions] = useState([]);
@@ -10,6 +11,7 @@ function App() {
   const [isAnswerIncorrect, setIsAnswerIncorrect] = useState(false);
   const [clickedAnswer, setClickedAnswer] = useState(null);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
+  const [showAnswerPopup, setShowAnswerPopup] = useState(false);
 
   const maxQuestions = 15;
   const prices = [100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
@@ -62,6 +64,7 @@ function App() {
       setIsAnswerCorrect(false);
       setIsAnswerIncorrect(true);
       setCorrectAnswerIndex(questions[currentQuestionIndex].correct_answer);
+      setShowAnswerPopup(true);
 
       setTimeout(() => {
         setIsAnswerCorrect(null);
@@ -93,6 +96,7 @@ function App() {
     setCurrentQuestionIndex(0);
     setGameOver(false);
     setQuestionCount(0);
+    setShowAnswerPopup(false);
   };
 
   return (
@@ -156,6 +160,13 @@ function App() {
           </table>
         </div>
       </div>
+
+      {showAnswerPopup && (
+        <AnswerPopup
+          correctAnswer={decodeHtmlEntities(questions[currentQuestionIndex].correct_answer)}
+          onClose={() => setShowAnswerPopup(false)}
+        />
+      )}
     </div>
   );
 }
