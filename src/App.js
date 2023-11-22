@@ -41,7 +41,7 @@ function App() {
 
   const handleAnswer = (selectedAnswer) => {
     if (selectedAnswer === questions[currentQuestionIndex].correct_answer) {
-      setMoneyEarned(prices[questionCount]);
+      setMoneyEarned(prices[maxQuestions - 1 - questionCount]);
       handleNextQuestion();
     } else {
       setGameOver(true);
@@ -108,70 +108,20 @@ function App() {
       </div>
       <div className="prizes">
         <table>
-          <tr>
-            <th>Question</th>
-            <th>Price</th>
-          </tr>
-          <tr>
-            <td>15</td>
-            <td>1 Million</td>
-          </tr>
-          <tr>
-            <td>14</td>
-            <td>500 000€</td>
-          </tr>
-          <tr>
-            <td>13</td>
-            <td>250 000€</td>
-          </tr>
-          <tr>
-            <td>12</td>
-            <td>125 000€</td>
-          </tr>
-          <tr>
-            <td>11</td>
-            <td>64 000€</td>
-          </tr>
-          <tr>
-            <td>10</td>
-            <td>32 000€</td>
-          </tr>
-          <tr>
-            <td>9</td>
-            <td>16 000€</td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td>80 00€</td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td>4 000€</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>2 000€</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>1 000€</td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td>500€</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>300€</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>200€</td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>100€</td>
-          </tr>
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {prices.slice().reverse().map((price, index) => (
+              <tr key={index} style={{ backgroundColor: currentQuestionIndex + 1 === maxQuestions - index ? 'lightgreen' : 'inherit' }}>
+                <td>{maxQuestions - index}</td>
+                <td>{maxQuestions - index === 1 ? `${price}€` : `${price}$`}</td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </div>
     </div>
