@@ -53,7 +53,7 @@ function App() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setQuestionCount(questionCount + 1);
     } else {
-      console.log("You are a millionare!");
+      console.log("You are a millionaire!");
       setGameOver(true);
     }
   };
@@ -105,6 +105,74 @@ function App() {
             <button onClick={handleRestartGame}>Start again!</button>
           </>
         )}
+      </div>
+      <div className="prizes">
+        <table>
+          <tr>
+            <th>Question</th>
+            <th>Price</th>
+          </tr>
+          <tr>
+            <td>15</td>
+            <td>1 Million</td>
+          </tr>
+          <tr>
+            <td>14</td>
+            <td>500 000€</td>
+          </tr>
+          <tr>
+            <td>13</td>
+            <td>250 000€</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td>125 000€</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td>64 000€</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>32 000€</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>16 000€</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>80 00€</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>4 000€</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>2 000€</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>1 000€</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>500€</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>300€</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>200€</td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>100€</td>
+          </tr>
+        </table>
       </div>
     </div>
   );
