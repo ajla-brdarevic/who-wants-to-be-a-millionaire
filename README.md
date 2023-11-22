@@ -1,7 +1,7 @@
 # Who Wants To Be A Millionare
 
 This is a simple weather application that displays current weather information for a given location. 
-This is a simple quiz game inspired by _Who Wants To Be A Millionare_ game using Open Trivia DB API. Video - 
+This is a simple quiz game inspired by _Who Wants To Be A Millionare_ game using Open Trivia DB API. Video - https://youtu.be/wvtju6FXxLg
 
 ## Features
 
