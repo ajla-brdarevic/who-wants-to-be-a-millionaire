@@ -70,14 +70,12 @@ function App() {
     <div className="App">
       <h1>Who Wants to Be a Millionaire?</h1>
       <div className="container">
+        <div className="game">
         {currentQuestionIndex < questions.length && !gameOver && (
           <>
             <button onClick={() => setGameOver(true)}>Give up!</button>
-            <h2>Question:</h2>
             <div className="question">
-              <p>
-                <b>{questions[currentQuestionIndex].question}</b>
-              </p>
+              <h2> {questions[currentQuestionIndex].question} </h2>
             </div>
 
             <div className="answers">
@@ -105,8 +103,8 @@ function App() {
             <button onClick={handleRestartGame}>Start again!</button>
           </>
         )}
-      </div>
-      <div className="prizes">
+        </div>
+        <div className="prizes">
         <table>
           <thead>
             <tr>
@@ -116,13 +114,14 @@ function App() {
           </thead>
           <tbody>
             {prices.slice().reverse().map((price, index) => (
-              <tr key={index} style={{ backgroundColor: currentQuestionIndex + 1 === maxQuestions - index ? 'lightgreen' : 'inherit' }}>
+              <tr key={index} style={{ backgroundColor: currentQuestionIndex + 1 === maxQuestions - index ? '#D6640F' : 'inherit' }}>
                 <td>{maxQuestions - index}</td>
                 <td>{maxQuestions - index === 1 ? `${price}€` : `${price}$`}</td>
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   );

@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {
@@ -14,16 +17,70 @@ code {
 
 h1 {
   text-align: center;
+  color: white;
+  margin-top: 4%;
 }
 
 .container {
   margin: auto;
-  width: auto;
-  max-width: 60%;
+  max-width: 70%;
   padding: 10px;
-  border: 3px solid green;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  gap: 20px;
 }
 
-.container h2{
+.game {
+  align-self: center;
+  max-width: 80%;
+  background-color: #3C30CC;
+  border-radius: 10px;
+}
+
+.game button {
+  color: white;
+  font-size: 14px;
+  background-color: #3C30CC;
+  border-radius: 8px;
+  width: 100px;
+  height: 30px;
+}
+
+.question h2{
+  max-width: 80%;
+  color: white;
+  margin: 10px;
+}
+
+.answers{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
   text-align: center;
+  margin: 15px 5px 5px 5px;
+}
+
+.answers button{
+  background-color: #191086;
+  width: 300px;
+  height: 50px;
+  border-radius: 7px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.answers button:hover{
+  background-color: #22A2CF;
+  color: black;
+}
+
+.prizes{
+  background-color: #3C30CC;
+  color: white;
+  border-radius: 10px;
 }
