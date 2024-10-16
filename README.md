@@ -1,4 +1,4 @@
-# Who Wants To Be A Millionare
+# Who Wants To Be A Millionaire
 
 This is a simple quiz game inspired by _Who Wants To Be A Millionare_ game using Open Trivia DB API. Video - https://youtu.be/wvtju6FXxLg
 
